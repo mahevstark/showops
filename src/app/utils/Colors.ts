@@ -10,6 +10,9 @@ export const Colors = {
     menuColor:"#767D74",
 
     menuColorLight:"#5C625B",
-    iconsBg:"#00200010"
+    iconsBg:"#00200010",
+
+    lightText:"#020A0062",
+    darkPlaceholder:"#EBFDE740"
 
 }

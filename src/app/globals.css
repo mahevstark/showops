@@ -123,3 +123,7 @@ body.light{
 body.dark{
   color:"#fff"
 }
+.rt-SelectTrigger{
+  width: 100%;
+  background: #00200010;
+}
