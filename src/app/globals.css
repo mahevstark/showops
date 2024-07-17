@@ -105,3 +105,21 @@ a {
     color-scheme: dark;
   }
 }
+
+body.light .icon{
+  fill: #1D211C;
+}
+body.dark .icon{
+  fill: #fff;
+}
+
+.logo-style{
+  padding: 18px 10px;
+}
+
+body.light{
+  color:"#1D211C"
+}
+body.dark{
+  color:"#fff"
+}
