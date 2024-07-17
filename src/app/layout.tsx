@@ -7,6 +7,7 @@ import '@radix-ui/themes/styles.css';
 import "./globals.css";
 import useThemeStore from "@/store/themeStore";
 import Sidebar from "./components/layout/Sidebar";
+import Header from "./components/layout/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,18 +31,19 @@ export default function RootLayout({
         
         <Theme appearance={theme} >
           <Box>
-            <Flex direction={"column"} >
+            <Flex direction={"row"} >
               {/* sidebar */}
               <Box style={{width:"25%"}}>
                 <Sidebar />
               </Box>
               {/* main panel */}
               <Box style={{width:"75%"}}>
-                
+                <Header />
+
+                {children}
               </Box>
             </Flex>
           </Box>
-          {children}
         </Theme>
       </body>
       

@@ -18,7 +18,7 @@ export default function Sidebar() {
     const appearance = useThemeStore((state) => state.appearance);
     return <Box>
         {/* sidebar */}
-        <Box py={"6"} px={"5"}>
+        <Box py={"4"} px={"5"}>
             <Flex direction={"column"}>
                 <Link className="logo-style" style={{}} href="/">
                     <Logo color={appearance=="dark"?Colors.white:Colors.black} />

@@ -9,6 +9,7 @@ export const Colors = {
 
     menuColor:"#767D74",
 
-    menuColorLight:"#5C625B"
+    menuColorLight:"#5C625B",
+    iconsBg:"#00200010"
 
 }
