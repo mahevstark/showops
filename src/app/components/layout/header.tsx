@@ -14,7 +14,7 @@ export default function Header() {
 
     const appearance = useThemeStore((state) => state.appearance);
 
-    const searchInputRef = React.useRef(null);
+    const searchInputRef = React.useRef<HTMLInputElement>(null);
 
     React.useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
