@@ -11,14 +11,31 @@ import React from "react";
 
 
 export default function Header() {
+
     const appearance = useThemeStore((state) => state.appearance);
+
+    const searchInputRef = React.useRef(null);
+
+    React.useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+                event.preventDefault();
+                searchInputRef.current?.focus();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
     return <Box px={"6"} py={"5"}>
         <Flex direction={"row"} align={"center"} justify={"between"}>
 
 
             <Box maxWidth="394px" width={"100%"} style={{width:"100%"}}>
-                <TextField.Root placeholder="Search ShowOps" size="2">
-                    <TextField.Slot>
+                <TextField.Root ref={searchInputRef} placeholder="Search ShowOps" size="2">
+                    <TextField.Slot >
                         <FaMagnifyingGlass height="16" width="16" />
                     </TextField.Slot>
                     <TextField.Slot>
