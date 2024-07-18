@@ -1,6 +1,6 @@
 import {Avatar, Box, Flex, IconButton, Skeleton, Text, TextField} from "@radix-ui/themes";
 import { Colors } from "@/app/utils/Colors";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useDropzone} from "react-dropzone";
 import useThemeStore from "@/store/themeStore";
 import { FiTrash } from "react-icons/fi";
@@ -38,12 +38,27 @@ export default function Fileupload(props) {
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+    useEffect(()=>{
+        if(props.preSelectedFile && props.preSelectedFile?.remove){
+            setUploadedImage(null);
+            setFilesize(null);
+            setFilename(null)
+            return
+        }
+        if(props.preSelectedFile){
+            // setUploadedImage("");
+            setFilesize(props.preSelectedFile.filesize)
+            setFilename(props.preSelectedFile.filename)
+        }
+    },[props.preSelectedFile])
+
 
     return <Skeleton loading={props?.loading}>
         <Flex direction={"column"} gap={"2"}>
 
             <Text size={"3"} weight={"medium"}>Banner image</Text>
             <Box
+
                 {...getRootProps()}
                 style={{
                     background: appearance == "dark" ? Colors.darkInputBg : Colors.iconsBg,
@@ -63,7 +78,7 @@ export default function Fileupload(props) {
                         (recommended size 1024x1024px) </Text>
                 </Flex>
             </Box>
-            {uploadedImage && (
+            {(uploadedImage || filesize) && (
                 <Box
                     style={{
                         height: "120px",
@@ -80,6 +95,7 @@ export default function Fileupload(props) {
                             <Flex direction={"column"} align={"start"} >
                                 <IconButton variant={"soft"} style={{background:Colors.lightRed,cursor:"pointer"}} onClick={()=>{
                                     setUploadedImage(null);
+                                    setFilesize(null);
                                 }}>
                                     <FiTrash color={"red"} />
                                 </IconButton>

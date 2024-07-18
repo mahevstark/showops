@@ -127,3 +127,10 @@ body.dark{
   width: 100%;
   background: #00200010;
 }
+.red-alerted{
+  border:1px solid red !important;
+
+}
+.red-alerted:focus{
+    border:1px solid red !important;
+}

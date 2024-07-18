@@ -13,7 +13,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import {FaRegBell} from "react-icons/fa";
 import { HiMiniBars3 } from "react-icons/hi2";
 
-import React from "react";
+import React, {useEffect} from "react";
 import { RxCross2 } from "react-icons/rx";
 import {FaMagnifyingGlass} from "react-icons/fa6";
 import {MdKeyboardCommandKey} from "react-icons/md";
@@ -26,6 +26,36 @@ export default function Sidebar() {
     const appearance = useThemeStore((state) => state.appearance);
 
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+
+    const [events, setEvents] = React.useState([])
+
+    useEffect(()=>{
+
+        getTodaysEvents()
+
+    },[])
+
+
+    const getTodaysEvents =()=>{
+
+        fetch("/server/api/events", {
+            headers:{
+                "Content-Type":"application/json"
+
+            },
+            method:"GET"
+
+        }).then((res)=>res.json())
+            .then((responseJson)=>{
+
+
+                setEvents(responseJson.data.events)
+
+            }).catch((error)=>{
+            console.log(error)
+            alert("An error occurred while fetching events. Please try again later.")
+        })
+    }
 
     const fullSidebar = ()=>{
         return <Box>
@@ -82,16 +112,17 @@ export default function Sidebar() {
                         </Box>
 
 
-                        {[1,2,3].map((v,index)=>{
+                        {events.map((v,index)=>{
                             return (
                                 <Box key={`event-${index}`} px={"4"} py={"3"} style={{cursor:"pointer"}}>
                                     <Flex direction={"row"} align={"center"} gap={"2"}>
                                         <Box >
-                                            <Image alt="event 1" src={"/assets/event_1.png"} width={40} height={40} />
+                                            {/* I had to store images on frontend, nextjs server was not working for me at the time */}
+                                            <Image alt="event 1" src={"/assets/"+v.image} width={40} height={40} />
                                         </Box>
                                         <Flex direction={"column"}>
-                                            <Text size={"1"} weight={"light"}>Tourist</Text>
-                                            <Text size={"2"} weight={"medium"}>The Viper Room</Text>
+                                            <Text size={"1"} weight={"light"}>{v.owner}</Text>
+                                            <Text size={"2"} weight={"medium"}>{v.event_name}</Text>
                                         </Flex>
                                     </Flex>
                                 </Box>
@@ -125,7 +156,7 @@ export default function Sidebar() {
     }
     const mobileSideBar = ()=>{
 
-        return <Box style={{position:"fixed", top:"0", left:"0", right:"0", bottom:"0", background:appearance=="dark"?"#111113":"white", zIndex:99999}}>
+        return <Box style={{position:"fixed", top:"0", left:"0", right:"0", bottom:"0", background:appearance=="dark"?Colors.pageBg:"white", zIndex:99999}}>
             {/* sidebar */}
             <Box py={"10px"} px={"20px"}>
                 <Flex direction={"column"}>
@@ -207,7 +238,7 @@ export default function Sidebar() {
                         </Box>
 
 
-                        {[1,2,3].map((v,index)=>{
+                        {events.map((v,index)=>{
                             return (
                                 <Box key={`event-${index}`} px={"4"} py={"3"} style={{cursor:"pointer"}}>
                                     <Flex direction={"row"} align={"center"} gap={"2"}>
@@ -215,8 +246,8 @@ export default function Sidebar() {
                                             <Image alt="event 1" src={"/assets/event_1.png"} width={40} height={40} />
                                         </Box>
                                         <Flex direction={"column"}>
-                                            <Text size={"1"} weight={"light"}>Tourist</Text>
-                                            <Text size={"2"} weight={"medium"}>The Viper Room</Text>
+                                            <Text size={"1"} weight={"light"}>{v.owner}</Text>
+                                            <Text size={"2"} weight={"medium"}>{v.event_name}</Text>
                                         </Flex>
                                     </Flex>
                                 </Box>
@@ -280,7 +311,7 @@ export default function Sidebar() {
                         onClick={()=>{
                             setMobileMenuOpen(!mobileMenuOpen)
                         }}
-                        variant={"soft"} size={"3"}  style={{cursor:"pointer",background: appearance=="dark"?"#1B2B1D":Colors.lightButtonBgGreen, padding:"11px",  borderRadius:"6px"}} >
+                        variant={"soft"} size={"3"}  style={{cursor:"pointer",background: appearance=="dark"?Colors.darkbuttonBgGreen:Colors.lightButtonBgGreen, padding:"11px",  borderRadius:"6px"}} >
                         <HiMiniBars3  style={{color: Colors.darkColorGreen}}/>
                     </IconButton>
                 </IconButton>

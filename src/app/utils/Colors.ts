@@ -24,7 +24,10 @@ export const Colors = {
     lightRed:"#F3000D27",
 
     darkbuttonBgGreen:"#1B2B1D",
-    lightButtonBgGreen:"#00970010"
+    lightButtonBgGreen:"#00970010",
+
+    pageBg:"#111113",
+    panel:"#181917"
 
 
 
