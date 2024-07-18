@@ -9,7 +9,10 @@ export interface ThemeStore {
 
 const useThemeStore = create<ThemeStore>((set) => ({
     appearance: 'light',
-    setAppearance: (appearance) => set({ appearance }),
+    setAppearance: (appearance) => {
+        set({ appearance });
+        localStorage.setItem("isDark", appearance == "dark" ? "true" : "false")
+    },
 }));
 
 export default useThemeStore;

@@ -8,6 +8,7 @@ import "./globals.css";
 import useThemeStore from "@/store/themeStore";
 import Sidebar from "./components/layout/Sidebar";
 import Header from "./components/layout/header";
+import React,{useEffect} from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,24 @@ export default function RootLayout({
 }>) {
 
   const theme = useThemeStore((state) => state.appearance);
+  const setAppearance = useThemeStore((state) => state.setAppearance);
+  const [loading, setLoading] = React.useState(true);
 
+  useEffect(()=>{
+    rememberDarkMode()
+  },[])
+  const rememberDarkMode = () => {
+    const isDark = localStorage.getItem("isDark");
+    if (isDark) {
+      setAppearance("dark")
+    }
 
+    setLoading(false)
+
+  }
+  if(loading){
+    return <Box></Box>
+  }
   return (
     <html lang="en">
       <body className={inter.className}>

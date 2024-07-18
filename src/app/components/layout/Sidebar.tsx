@@ -70,11 +70,11 @@ export default function Sidebar() {
                     </Box>
 
 
-                    {[1,2,3].map(()=>{
+                    {[1,2,3].map((v,index)=>{
                         return (
-                            <Box px={"4"} py={"3"} style={{cursor:"pointer"}}>
+                            <Box key={`event-${index}`} px={"4"} py={"3"} style={{cursor:"pointer"}}>
                                 <Flex direction={"row"} align={"center"} gap={"2"}>
-                                    <Box mb={"2"}>
+                                    <Box >
                                         <Image alt="event 1" src={"/assets/event_1.png"} width={40} height={40} />
                                     </Box>
                                     <Flex direction={"column"}>

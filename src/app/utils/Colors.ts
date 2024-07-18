@@ -13,6 +13,19 @@ export const Colors = {
     iconsBg:"#00200010",
 
     lightText:"#020A0062",
-    darkPlaceholder:"#EBFDE740"
+    darkPlaceholder:"#EBFDE740",
+    darkInputBg:"#212220",
+
+    darkSoftText:"#AFB5AD",
+    lightSoftText:"#7C827A",
+
+    anotherLightSoft:"#5C615B",
+
+    lightRed:"#F3000D27",
+
+    darkbuttonBgGreen:"#70FE8C11",
+    lightButtonBgGreen:"#00970010"
+
+
 
 }
