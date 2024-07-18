@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Box, Flex, Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
