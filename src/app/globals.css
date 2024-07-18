@@ -134,3 +134,6 @@ body.dark{
 .red-alerted:focus{
     border:1px solid red !important;
 }
+body{
+  padding-right: 0 !important;
+}
