@@ -186,18 +186,21 @@ export default function Home() {
 
   }
 
-  const invokeEdit =()=>{
+  const invokeEdit = async ()=>{
     setEditing(true)
-    const eventDetails = JSON.parse(localStorage.getItem("event"))
+    const eventDetails = await JSON.parse(localStorage.getItem("event"))
+    console.log("eventDetails", eventDetails);
+    
 
-    setEventName(eventDetails.name)
-    setDescription(eventDetails.description)
-    setPreSelectedFile(eventDetails.file)
-    setFile(eventDetails.file)
-    setDate(eventDetails.date)
-    setStartTime(eventDetails.startTime)
-    setEndTime(eventDetails.endTime)
-    setTimezon(eventDetails.timezone)
+    await setEventName(eventDetails.name)
+   await setDescription(eventDetails.description)
+   await setPreSelectedFile(eventDetails.file)
+   await setFile(eventDetails.file)
+   await setDate(eventDetails.date)
+   await setStartTime(eventDetails.startTime)
+   await setEndTime(eventDetails.endTime)
+   await setTimezon(eventDetails.timezone)
+   await setVideo(eventDetails.video)
 
   }
 
@@ -217,7 +220,8 @@ export default function Home() {
             startTime:startTime,
             endTime:endTime,
             description:description,
-            file:file
+            file:file,
+            video:video
         }
         localStorage.setItem("event", JSON.stringify(eventDetails))
         localStorage.setItem("justCreated", "true")
@@ -225,7 +229,7 @@ export default function Home() {
         window.location.reload()
 
 
-        console.log("created")
+        console.log("created" , localStorage.getItem("event"))
 
       },2000)
 
@@ -233,7 +237,7 @@ export default function Home() {
         console.log("errors")
     }
   }
-
+  console.log("created" , localStorage.getItem("event"))
   const getSubmitBtnText =()=>{
     if(editing){
 
@@ -330,6 +334,7 @@ export default function Home() {
                   ref={(ref)=>{
                     refs.eventName = ref
                   }}
+                  value={name}
 
                   onChange={(e)=>{
                     setEventName(e.target.value)
@@ -441,7 +446,8 @@ export default function Home() {
                   onChange={(e)=>{
                     setDescription(e.target.value)
                   }}
-                  variant="soft" style={{background: appearance=="dark"?Colors.darkInputBg: Colors.iconsBg}} placeholder="Add event description..." />
+                  value={description}
+                  variant="soft" style={{background: appearance=="dark"?Colors.darkInputBg: Colors.iconsBg, paddingTop:5}} placeholder="Add event description..." />
             </Flex>
           </Skeleton>
 
@@ -456,6 +462,7 @@ export default function Home() {
                   ref={(ref)=>{
                     refs.video = ref
                   }}
+                  value={video}
 
                   onChange={(e)=>{
                     setVideo(e.target.value)
