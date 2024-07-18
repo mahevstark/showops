@@ -48,8 +48,7 @@ export default function Home() {
 
 
   return (
-      <MantineProvider>
-    <Box px="6" py="5">
+    <Box px={{sm:"6", xs:"20px", initial:"20px"}} py={{sm:"5", xs:"20px", initial:"20px"}} width={"100%"}>
       <Box maxWidth={"570px"}>
 
         <Flex direction="column">
@@ -94,7 +93,7 @@ export default function Home() {
 
               <Flex direction={"row"} align={"center"} justify={"between"}>
 
-                  <Box width={"280px"} style={{}}>
+                  <Box width={{xs:"280px",initial:"100%"}} pr={{md:"0px",xs:"1", initial:"1"}} style={{}}>
                     <Select.Root size={"3"} value={date}>
                       <Select.Trigger  variant="soft" style={{background:appearance=="dark"?Colors.darkInputBg: Colors.iconsBg}}>
                         <Flex as="span" align="center" gap="2">
@@ -113,7 +112,7 @@ export default function Home() {
                     </Select.Root>
                   </Box>
 
-                  <Box width={"280px"} style={{}}>
+                  <Box width={{xs:"280px",initial:"100%"}} pl={{md:"0px",xs:"1", initial:"1"}} style={{}}>
                     <Select.Root size={"3"} value={timezone} onValueChange={setTimezon}>
                       <Select.Trigger variant="soft" style={{background:appearance=="dark"?Colors.darkInputBg: Colors.iconsBg}}>
                         <Flex as="span" align="center" gap="2">
@@ -135,7 +134,7 @@ export default function Home() {
 
               <Flex direction={"row"} align={"center"} justify={"between"}>
 
-                  <Box width={"280px"} style={{}}>
+                  <Box width={{xs:"280px",initial:"100%"}} pr={{md:"0px",xs:"1", initial:"1"}} style={{}}>
                     <Select.Root size={"3"} value={startTime}>
                       <Select.Trigger variant="soft" style={{background:appearance=="dark"?Colors.darkInputBg: Colors.iconsBg}}>
                         <Flex as="span" align="center" gap="2">
@@ -153,7 +152,7 @@ export default function Home() {
                     </Select.Root>
                   </Box>
 
-                <Box width={"280px"}>
+                <Box width={{xs:"280px",initial:"100%"}} pl={{md:"0px",xs:"1", initial:"1"}} style={{}}>
                   <Select.Root size={"3"} value={endTime}>
                       <Select.Trigger variant="soft" style={{background:appearance=="dark"?Colors.darkInputBg: Colors.iconsBg}}>
                         <Flex as="span" align="center" gap="2">
@@ -208,6 +207,5 @@ export default function Home() {
         </Flex>
       </Box>
     </Box>
-        </MantineProvider>
   );
 }

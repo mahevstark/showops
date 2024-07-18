@@ -6,6 +6,7 @@ import { FaRegBell } from "react-icons/fa";
 
 import { Colors } from "@/app/utils/Colors";
 import useThemeStore from "@/store/themeStore";
+import React from "react";
 
 
 
@@ -24,7 +25,7 @@ export default function Header() {
                         <Box >
                             <Flex direction={"row"} align={"center"}>
                                 <MdKeyboardCommandKey />
-                                <Text>S</Text>
+                                <Text style={{marginTop:"1px", marginLeft:"1px"}}>S</Text>
                             </Flex>
                         </Box>
                     </TextField.Slot>
@@ -33,7 +34,7 @@ export default function Header() {
 
             <Flex direction={"row"} align={"end"} gap={"4"}>
                 <IconButton variant={"soft"} size={"3"}  style={{background: appearance=="dark"?Colors.darkInputBg: Colors.iconsBg, padding:"11px",  borderRadius:"6px"}} >
-                    <FaRegBell style={{color:Colors.darkSoftText}} width={"100px"}/>
+                    <FaRegBell style={{color:Colors.darkSoftText}}/>
                 </IconButton>
                 <Avatar
                     src={"/assets/profile.png"}

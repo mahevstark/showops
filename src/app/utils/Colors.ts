@@ -23,7 +23,7 @@ export const Colors = {
 
     lightRed:"#F3000D27",
 
-    darkbuttonBgGreen:"#70FE8C11",
+    darkbuttonBgGreen:"#1B2B1D",
     lightButtonBgGreen:"#00970010"
 
 

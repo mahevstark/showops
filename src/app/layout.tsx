@@ -48,14 +48,16 @@ export default function RootLayout({
         
         <Theme appearance={theme} >
           <Box>
-            <Flex direction={"row"} >
+            <Flex direction={{sm:"row", xs:"column", initial:"column"}} >
               {/* sidebar */}
-              <Box style={{width:"25%"}}>
+              <Box width={{sm:"25%", xs:"100%"}}>
                 <Sidebar />
               </Box>
               {/* main panel */}
-              <Box style={{width:"75%"}}>
-                <Header />
+              <Box width={{sm:"75%", xs:"100%", initial:"100%"}}>
+                <Box display={{sm:"block", xs:"none",  initial:"none"}}>
+                  <Header />
+                </Box>
 
                 {children}
               </Box>
